@@ -1,0 +1,13 @@
+#VRML_SIM R2023b utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.18192818266917427 0.7349954860588983 0.6527989941175526 4.23442849283593
+  position 0.07433724540164785 1.1868523854582006 1.992810819070033
+}
+RectangleArena {
+  floorSize 10 10
+  floorTileSize 1 1
+  floorAppearance Parquetry {
+  }
+}

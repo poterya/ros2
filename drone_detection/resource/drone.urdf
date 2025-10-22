@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<robot name="quadcopter_drone">
+  
+  <webots>
+    <plugin type="drone_detection.drone_controller.DroneController" />
+  </webots>
+  
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.4 0.4 0.05"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.2 0.2 0.8 1.0"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
+    </inertial>
+  </link>
+  
+  <!-- Propeller 1: Front Left -->
+  <link name="propeller_1">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="propeller_1_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="propeller_1"/>
+    <origin xyz="0.15 0.15 0.05" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Propeller 2: Front Right -->
+  <link name="propeller_2">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="propeller_2_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="propeller_2"/>
+    <origin xyz="0.15 -0.15 0.05" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Propeller 3: Rear Left -->
+  <link name="propeller_3">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="1.0 1.0 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="propeller_3_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="propeller_3"/>
+    <origin xyz="-0.15 0.15 0.05" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Propeller 4: Rear Right -->
+  <link name="propeller_4">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.1"/>
+      </geometry>
+      <material name="orange">
+        <color rgba="1.0 0.5 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="propeller_4_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="propeller_4"/>
+    <origin xyz="-0.15 -0.15 0.05" rpy="0 0 0"/>
+  </joint>
+  
+</robot>
