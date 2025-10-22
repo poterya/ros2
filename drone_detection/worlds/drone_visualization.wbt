@@ -1,0 +1,138 @@
+#VRML_SIM R2023b utf8
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation -0.18192818266917427 0.7349954860588983 0.6527989941175526 4.23442849283593
+  position 0.07433724540164785 1.1868523854582006 1.992810819070033
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+  floorTileSize 1 1
+  floorAppearance Parquetry {
+    textureTransform TextureTransform {
+      scale 10 10
+    }
+  }
+}
+DEF QUADCOPTER Robot {
+  translation 0 0 0.5
+  rotation 1 0 0 1.5708
+  children [
+    Transform {
+      translation 0 0 0.025
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.2 0.8
+            roughness 0.5
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.4 0.05
+          }
+        }
+      ]
+    }
+    # Propeller 1 - Front Left
+    Transform {
+      translation 0.15 0.15 0.05
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 0.3
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.1
+          }
+        }
+      ]
+    }
+    # Propeller 2 - Front Right
+    Transform {
+      translation 0.15 -0.15 0.05
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            roughness 0.3
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.1
+          }
+        }
+      ]
+    }
+    # Propeller 3 - Rear Left
+    Transform {
+      translation -0.15 0.15 0.05
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 0.3
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.1
+          }
+        }
+      ]
+    }
+    # Propeller 4 - Rear Right
+    Transform {
+      translation -0.15 -0.15 0.05
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.5 0
+            roughness 0.3
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.1
+          }
+        }
+      ]
+    }
+    GPS {
+    }
+    InertialUnit {
+    }
+    Gyro {
+    }
+    Camera {
+      translation 0.2 0 0.1
+      rotation 0 0 1 1.5708
+      name "camera"
+      fieldOfView 1.0472
+      width 640
+      height 480
+    }
+  ]
+  name "quadcopter_drone"
+  boundingObject Transform {
+    translation 0 0 0.025
+    children [
+      Box {
+        size 0.4 0.4 0.05
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 1.0
+  }
+  controller "webots_ros2_driver"
+  controllerArgs [
+    "--ros-args",
+    "-p", "robot_description:=/home/user/ros2_ws/install/drone_detection/share/drone_detection/resource/drone.urdf"
+  ]
+}
